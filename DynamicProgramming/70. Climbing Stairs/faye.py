@@ -24,7 +24,21 @@ class Solution:
             b = a + b
             a = tmp
         return b
+    
+    def list_all_steps(self, n):
+        steps = []
+        def dfs(cur_sum, cur_combination, m):
+            print(cur_sum)
+            print(cur_combination)
+            if cur_sum == n:
+                steps.append(cur_combination)
+                return
+            if cur_sum > n:
+                return
+            for i in range(m, n+1):
+                dfs(cur_sum + i, cur_combination + [i], i)
+        dfs(0, [], 1)
+        return steps
 
 n = 4
-ans = Solution().dp_constant_sapce(n)
-print(ans)
+steps = Solution().list_all_steps(n)
